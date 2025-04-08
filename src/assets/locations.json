@@ -1,0 +1,19 @@
+[
+    {
+      "id": 1,
+      "name": "Hotel Central",
+      "lat": 53.344,
+      "lng": -6.26,
+      "type": "hotel",
+      "description": "A nice place to stay."
+    },
+    {
+      "id": 2,
+      "name": "Cafe Relax",
+      "lat": 53.346,
+      "lng": -6.262,
+      "type": "restaurant",
+      "description": "Cozy spot for coffee."
+    }
+  ]
+  

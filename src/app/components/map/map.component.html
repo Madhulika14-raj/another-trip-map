@@ -1,0 +1,15 @@
+
+<google-map [center]="center" [zoom]="zoom" height="90vh" width="100%">
+    <map-marker
+      *ngFor="let marker of markers"
+      [position]="{ lat: marker.lat, lng: marker.lng }"
+      [title]="marker.name"
+      (mapClick)="onMarkerClick(marker)">
+    </map-marker>
+  </google-map>
+
+<!--   <div *ngIf="selectedMarker" class="info-window">
+    <h3>{{ selectedMarker.name }}</h3>
+    <p>{{ selectedMarker.description }}</p>
+    <button (click)="navigateToDetails(selectedMarker)">More Info</button>
+  </div> -->
