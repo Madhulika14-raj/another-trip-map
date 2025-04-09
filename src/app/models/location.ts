@@ -1,10 +1,9 @@
-/* export class Location {
-} */
 export interface Location {
-    id: number;
-    name: string;
-    lat: number;
-    lng: number;
-    type: string;
-    description: string;
-  }
+  id: number;
+  name: string;
+  lat: number;
+  lng: number;
+  type: string;
+  description: string;
+  category:string;
+}

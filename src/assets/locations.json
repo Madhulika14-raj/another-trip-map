@@ -1,19 +1,52 @@
 [
-    {
-      "id": 1,
-      "name": "Hotel Central",
-      "lat": 53.344,
-      "lng": -6.26,
-      "type": "hotel",
-      "description": "A nice place to stay."
-    },
-    {
-      "id": 2,
-      "name": "Cafe Relax",
-      "lat": 53.346,
-      "lng": -6.262,
-      "type": "restaurant",
-      "description": "Cozy spot for coffee."
-    }
-  ]
-  
+  {
+    "id": 1,
+    "name": "The Ritz-Carlton",
+    "category": "Hotel",
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "description": "A luxurious 5-star hotel located in the heart of London.",
+    "image": "https://example.com/images/ritz-carlton.jpg",
+    "rating": 4.8
+  },
+  {
+    "id": 2,
+    "name": "Big Ben",
+    "category": "Tourist Spot",
+    "latitude": 51.5007,
+    "longitude": -0.1246,
+    "description": "Iconic clock tower in the city of Westminster, London.",
+    "image": "https://example.com/images/big-ben.jpg",
+    "rating": 4.7
+  },
+  {
+    "id": 3,
+    "name": "The Shard",
+    "category": "Restaurant",
+    "latitude": 51.5045,
+    "longitude": -0.0865,
+    "description": "A modern restaurant with stunning views over London.",
+    "image": "https://example.com/images/shard.jpg",
+    "rating": 4.6
+  },
+  {
+    "id": 4,
+    "name": "The British Museum",
+    "category": "Museum",
+    "latitude": 51.5194,
+    "longitude": -0.1270,
+    "description": "A world-renowned museum with historical exhibits.",
+    "image": "https://example.com/images/british-museum.jpg",
+    "rating": 4.9
+  },
+  {
+    "id": 5,
+    "name": "Hyde Park",
+    "category": "Park",
+    "latitude": 51.5074,
+    "longitude": -0.1657,
+    "description": "A large public park in central London, perfect for outdoor activities.",
+    "image": "https://example.com/images/hyde-park.jpg",
+    "rating": 4.5 
+  }
+]

@@ -1,1 +1,14 @@
-<app-map></app-map>
+<!-- <div class="app-container">
+    <app-sidebar (filterChanged)="onFilter($event)"></app-sidebar>
+    <app-map [filter]="selectedType"></app-map>
+  </div> -->
+
+  <div class="app-container">
+    <app-sidebar
+      [categories]="uniqueCategories"
+      (filterChanged)="handleFilter($event)">
+    </app-sidebar>
+  
+    <app-map [filter]="filterData"></app-map>
+  </div>
+  
