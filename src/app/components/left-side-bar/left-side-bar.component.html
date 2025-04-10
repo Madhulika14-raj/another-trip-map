@@ -1,7 +1,7 @@
 <div class="sidebar">
     <h4 class="heading"><img src="assets/images/atlogo.png" alt="Logo" class="logocls">Another Trip
     </h4>
-    <input type="text" [(ngModel)]="searchTerm" (input)="applyFilters()" placeholder="Search by name or category" />
+    <input type="text" [(ngModel)]="searchTerm" class="input-field" (input)="applyFilters()" placeholder="Search by name or category" />
   
     <div class="bordercls">
       <h4 class="titlecls">Categories</h4>
@@ -22,6 +22,8 @@
         <h4 class="titlecls">Minimum Rating</h4>
         <input type="number" [(ngModel)]="minRating" class="input-field" min="0" max="5" step="0.1" (input)="applyFilters()" />
     </div>
+
+    
 
 </div>
   

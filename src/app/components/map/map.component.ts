@@ -19,7 +19,6 @@ export class MapComponent implements OnChanges{
   locations: Location[] = [];
   filteredLocations: Location[] = [];
   selectedLocation: Location | null = null;
-  categories: string[] = ['Hotel', 'Restaurant'];  // Example default values
 
   constructor(private mapService:MapService,private mapsLoader: GoogleMapsLoaderService,private router: Router) {}
   @ViewChild(MapInfoWindow) infoWindow!: MapInfoWindow;

@@ -11,14 +11,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class LeftSideBarComponent {
   searchTerm = '';
-  selectedCategories: string[] = ['Hotel'];
+  selectedCategories: string[] = [];
   minPrice = 0;
   maxPrice = 1000;
   minRating = 0;
-
+  categories = ['Hotel', 'Restaurant', 'Tourist Spot'];
   @Output() filtersChanged = new EventEmitter<any>();
 
-  categories = ['Hotel', 'Restaurant', 'Tourist Spot'];
  ngOnInit(){
  }
   applyFilters() {
