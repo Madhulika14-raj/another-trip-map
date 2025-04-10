@@ -1,0 +1,97 @@
+.sidebar { 
+    padding: 0.5rem;
+    width: 250px;
+    background-color: #a7cdf3;
+    border-right: 1px solid #ddd;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+  
+    input[type="text"] {
+      width: 85%;
+      padding: 8px;
+      margin-bottom: 1rem;
+    }
+  
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+  
+    label {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+  
+    button {
+      width: 100%;
+      padding: 8px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  
+    button:hover {
+      background: #0056b3;
+    }
+    h4,div{
+        font-size: 16px !important;
+        font-family: Arial!important;
+      }
+
+      .bordercls{
+        background-color: #a7cdf3;
+        border: 2px solid #a7cdf3;
+        padding: 20px;
+        font-size: 18px;
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        transition: all 0.3s ease; /* Smooth transition for hover effect */
+      }
+
+      .margincls{
+        margin-top: 10px!important;
+      }
+
+      .logocls{
+        width: 70px; 
+        height: 45px; 
+        margin-right: 10px;
+      }
+
+      .heading {
+        display: flex; /* Makes the content inside <h4> a flex container */
+        align-items: center; /* Vertically center the items (image and text) */
+      }
+
+      /* Input Field Styling */
+.input-field {
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 15px;
+    background-color: #e8eaed;
+    color: black;
+    border: 1px solid #adddf6;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  /* On focus input field styling */
+  .input-field:focus {
+    outline: none;
+    border-color: #008cba;
+    box-shadow: 0 0 10px rgba(0, 140, 186, 0.3);
+  }
+
+  .titlecls{
+    margin-top: 5px!important;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+  }
+  
+  }
+  

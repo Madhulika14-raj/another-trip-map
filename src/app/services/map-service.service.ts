@@ -10,6 +10,6 @@ export class MapService {
   constructor(private http: HttpClient) {}
 
   getLocations(): Observable<any> {
-    return this.http.get("assets/locations.json");
+    return this.http.get("assets/json/locations.json");
 }
 }

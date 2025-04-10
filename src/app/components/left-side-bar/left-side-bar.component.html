@@ -1,0 +1,27 @@
+<div class="sidebar">
+    <h4 class="heading"><img src="assets/images/atlogo.png" alt="Logo" class="logocls">Another Trip
+    </h4>
+    <input type="text" [(ngModel)]="searchTerm" (input)="applyFilters()" placeholder="Search by name or category" />
+  
+    <div class="bordercls">
+      <h4 class="titlecls">Categories</h4>
+      <div *ngFor="let category of categories">
+      <input type="checkbox" [value]="category" (change)="toggleCategory(category, $event)" />
+      {{ category }}
+      </div>
+    </div>
+
+    <div class="bordercls margincls">
+      <h4 class="titlecls">Price Range</h4>   
+        Minimum Price: <input type="number" [(ngModel)]="minPrice" min="1"  step="1" class="input-field" (input)="applyFilters()" placeholder="Min Price" />
+        Maximum Price: <input type="number" [(ngModel)]="maxPrice" min="1"  step="1" class="input-field" (input)="applyFilters()" placeholder="Max Price" />
+    </div>
+
+
+    <div class="bordercls margincls">
+        <h4 class="titlecls">Minimum Rating</h4>
+        <input type="number" [(ngModel)]="minRating" class="input-field" min="0" max="5" step="0.1" (input)="applyFilters()" />
+    </div>
+
+</div>
+  

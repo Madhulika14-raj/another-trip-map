@@ -1,0 +1,42 @@
+.info-window {
+    max-width: 250px;
+  }
+  .info-window img {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .mapAlertcls{
+    width: auto;
+    max-width: 100%;
+    background-color: #a7cdf3;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 15px;
+    font-family: Arial;
+    font-size: 16px;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  button {
+    padding: 0.6rem 1.2rem;
+    background-color: #1976d2!important;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+
+  /* Responsive Design */
+@media (max-width: 768px) {
+    .mapAlertcls {
+      width: 100%;
+      max-width: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mapAlertcls {
+      padding: 12px;
+    }
+}

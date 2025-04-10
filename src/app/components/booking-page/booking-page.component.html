@@ -1,0 +1,35 @@
+<ng-container>
+    <button (click)="goBack()" class="back-arrow-button">
+        <i class="fa fa-arrow-left"></i> Back to Main Page
+      </button>
+</ng-container>
+
+
+<div class="booking-form-container">
+    <h2>Book Your Slot</h2>
+  
+    <form (ngSubmit)="submitBooking()" #bookingForm="ngForm">
+      <label>
+        Name:
+        <input type="text" [(ngModel)]="bookingData.name" name="name" required />
+      </label>
+  
+      <label>
+        Email:
+        <input type="email" [(ngModel)]="bookingData.email" name="email" required />
+      </label>
+  
+      <label>
+        Booking Date:
+        <input type="date" [(ngModel)]="bookingData.date" name="date" required />
+      </label>
+  
+      <label>
+        Comments:
+        <textarea [(ngModel)]="bookingData.comments" name="comments"></textarea>
+      </label>
+  
+      <button type="submit" [disabled]="!bookingForm.form.valid">Submit</button>
+    </form>
+  </div>
+  

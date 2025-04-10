@@ -1,0 +1,51 @@
+.booking-form-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    background: #f9f9f9;
+  }
+  
+  .booking-form-container label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.3rem;
+    box-sizing: border-box;
+  }
+  
+  button {
+    padding: 0.6rem 1.2rem;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+
+.back-arrow-button {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  .back-arrow-button img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+  
+  .back-arrow-button i {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+  
+  

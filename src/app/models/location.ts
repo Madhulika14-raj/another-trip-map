@@ -3,7 +3,10 @@ export interface Location {
   name: string;
   lat: number;
   lng: number;
+  category: string;
   type: string;
+  price: number;
+  rating: number;
   description: string;
-  category:string;
+  image?: string;
 }

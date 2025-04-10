@@ -1,24 +1,29 @@
 <ng-container *ngIf="apiLoaded">
 
-<google-map
-  [height]="'100vh'"
-  [width]="'100%'"
-  [center]="center"
-  [zoom]="zoom">
+    <google-map
+      [height]="'100vh'"
+      [width]="'100%'"
+      [center]="center"
+      [zoom]="zoom">
 
-  <map-marker
-    *ngFor="let loc of filteredLocations"
+    <map-marker
+    *ngFor="let loc of filteredLocations;let i = index"
     [position]="{ lat: loc.lat, lng: loc.lng }"
     [title]="loc.name"
-    (mapClick)="openInfoWindow(marker, loc)"
-    #marker="mapMarker">
-  </map-marker>
+    #marker
+    (mapClick)="openInfoWindow(i, loc)">
+    </map-marker>
 
-  <map-info-window>
-    <strong>{{ selectedLocation?.name }}</strong>
-    <p>{{ selectedLocation?.description }}</p>
-    <button (click)="popupAlert('Custom action')">More Info</button>
-  </map-info-window>
+    <map-info-window>
+    <div *ngIf="selectedLocation" class="mapAlertcls">
+      <h3>{{ selectedLocation.name }}</h3>
+      <p>{{ selectedLocation.description }}</p>
+      <img *ngIf="selectedLocation.image" [src]="selectedLocation.image" width="100" />
+      <br />
+      <button (click)="handleAction(selectedLocation)">Book</button>
+    </div>
+    </map-info-window>
 
-</google-map>
+    </google-map>
+    
 </ng-container>

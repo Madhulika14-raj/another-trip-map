@@ -1,14 +1,21 @@
-<!-- <div class="app-container">
-    <app-sidebar (filterChanged)="onFilter($event)"></app-sidebar>
-    <app-map [filter]="selectedType"></app-map>
-  </div> -->
 
-  <div class="app-container">
-    <app-sidebar
-      [categories]="uniqueCategories"
-      (filterChanged)="handleFilter($event)">
-    </app-sidebar>
+
+  <ng-container *ngIf="isBookingRoute; else showMap">
+    <router-outlet></router-outlet>
+  </ng-container>
   
-    <app-map [filter]="filterData"></app-map>
-  </div>
+  <ng-template #showMap>
+
+    <div class="app-container">
+      <!-- Sidebar on the left -->
+      <div class="sidebar">
+        <app-left-side-bar (filtersChanged)="mapComp.onFiltersChanged($event)"></app-left-side-bar>
+      </div>
+    
+      <!-- Map on the right -->
+      <div class="map-area">
+        <app-map  #mapComp></app-map>
+      </div>
+    </div>  </ng-template>
+  
   

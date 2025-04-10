@@ -1,9 +1,10 @@
-import { Component,ViewChild, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component,ViewChild, Input, SimpleChanges, OnChanges, QueryList, ViewChildren } from '@angular/core';
 import { Location } from '../../models/location';
 import { GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { MapService } from '../../services/map-service.service';
 import { GoogleMapsLoaderService } from '../../services/google-maps-loader.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -16,41 +17,33 @@ export class MapComponent implements OnChanges{
   apiLoaded:boolean=false;
   center: google.maps.LatLngLiteral = { lat: 53.349805, lng: -6.26031 }; // Dublin center
   locations: Location[] = [];
-  filteredLocations: any[] = [];
+  filteredLocations: Location[] = [];
   selectedLocation: Location | null = null;
   categories: string[] = ['Hotel', 'Restaurant'];  // Example default values
 
-  constructor(private mapService:MapService,private mapsLoader: GoogleMapsLoaderService) {}
+  constructor(private mapService:MapService,private mapsLoader: GoogleMapsLoaderService,private router: Router) {}
   @ViewChild(MapInfoWindow) infoWindow!: MapInfoWindow;
+  @ViewChildren(MapMarker) mapMarkers!: QueryList<MapMarker>;
+  @Input() filters: {
+    searchTerm: string;
+    categories: string[];
+    minPrice: number;
+    maxPrice: number;
+    minRating: number;
+  } = {
+    searchTerm: '',
+    categories: [],
+    minPrice: 0,
+    maxPrice: 1000,
+    minRating: 0
+  };
 
-  @Input() filter: { query: string; categories: string[] } = { query: '', categories: [] };
   ngOnInit() {
     this.mapsLoader.load().then(() => {
-      // Google Maps is loaded, safe to use
-      this.apiLoaded = true;
-      this.mapService.getLocations().subscribe((data) => {
-      data=[
-        {
-          "name": "Hilton Hotel",
-          "description": "Luxury hotel in city center",
-          "lat": 53.3501,
-          "lng": -6.2602,
-          "category": "Hotel"
-        },
-        {
-          "name": "Trinity College",
-          "description": "Historical university and tourist attraction",
-          "lat": 53.3438,
-          "lng": -6.2546,
-          "category": "Tourist Spot"
-        }
-      ]
-      
-        
-        this.locations = data;
-        this.filteredLocations = data;
-        console.log("markers>>>",this.locations)
-
+      this.apiLoaded = true;       // Google Maps is loaded, safe to use
+      this.mapService.getLocations().subscribe((data) => {      
+       this.locations = data;
+       this.filteredLocations = data;
       });
     }).catch(err => {
       console.error('Failed to load Google Maps', err);
@@ -58,30 +51,45 @@ export class MapComponent implements OnChanges{
     
   }
 
+
+  selectLocation(location: Location) {
+    this.selectedLocation = location;
+    if (this.infoWindow) {
+      this.infoWindow.open();
+    }
+  }
+  handleAction(location: Location) { 
+    this.router.navigate(['/booking']); // Navigate to the booking page
+  }
+
+  onFiltersChanged(filters: any) {
+    this.filters = filters;
+    this.applyFilters();
+  }
+  
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['filter']) {
+    if (changes['filters']) {
       this.applyFilters();
     }
   }
 
-  applyFilters(): void {
-    const { query, categories } = this.filter;
-
+  applyFilters() {
     this.filteredLocations = this.locations.filter(loc => {
-      const matchesQuery = !query || loc.name.toLowerCase().includes(query);
-      const matchesCategory = categories.length === 0 || categories.includes(loc.category);
-      console.log("matchesCategory",matchesCategory);
-      console.log("matchesQuery",matchesQuery)
-      return matchesQuery && matchesCategory;
+      const matchesCategory = this.filters.categories.length === 0 || this.filters.categories.includes(loc.category);
+      const matchesSearch = loc.name.toLowerCase().includes(this.filters.searchTerm) || loc.category.toLowerCase().includes(this.filters.searchTerm);
+      const matchesPrice = loc.price >= this.filters.minPrice && loc.price <= this.filters.maxPrice;
+      const matchesRating = loc.rating >= this.filters.minRating;
+  
+      return matchesCategory && matchesSearch && matchesPrice && matchesRating;
     });
   }
 
-  openInfoWindow(marker: MapMarker, location: any): void {
-    this.selectedLocation = location;
-    this.infoWindow.open(marker);
-  }
 
-  popupAlert(test:any){
-    console.log("clicked",test);
+  openInfoWindow(index: number, location: Location) {
+    const marker = this.mapMarkers.get(index);
+    if (marker) {
+      this.selectedLocation = location;
+      this.infoWindow.open(marker);
+    }
   }
 }
