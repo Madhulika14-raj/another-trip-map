@@ -1,29 +1,56 @@
 <ng-container *ngIf="apiLoaded">
 
-    <google-map
-      [height]="'100vh'"
-      [width]="'100%'"
-      [center]="center"
-      [zoom]="zoom">
+  <google-map
+    [height]="'100vh'"
+    [width]="'100%'"
+    [center]="center"
+    [zoom]="zoom">
 
-    <map-marker
+
+  <map-marker
+  *ngFor="let loc of filteredLocations;let i = index"
+  [position]="{ lat: loc.lat, lng: loc.lng }"
+  [title]="loc.name"
+  #marker
+  (mapClick)="openInfoWindow(i, loc)">
+  </map-marker>
+
+ <map-marker
     *ngFor="let loc of filteredLocations;let i = index"
     [position]="{ lat: loc.lat, lng: loc.lng }"
     [title]="loc.name"
-    #marker
-    (mapClick)="openInfoWindow(i, loc)">
-    </map-marker>
+    (mapClick)="onMarkerClick(loc);openInfoWindow(i, loc)"
+    [icon]="getMarkerIcon(loc)">
+  </map-marker>
 
-    <map-info-window>
-    <div *ngIf="selectedLocation" class="mapAlertcls">
-      <h3>{{ selectedLocation.name }}</h3>
-      <p>{{ selectedLocation.description }}</p>
-      <img *ngIf="selectedLocation.image" [src]="selectedLocation.image" width="100" />
-      <br />
-      <button (click)="handleAction(selectedLocation)">Book</button>
-    </div>
-    </map-info-window>
 
-    </google-map>
-    
+<!-- Map Info Window: Show only when showDistance is false -->
+<map-info-window *ngIf="!showDistance">
+<div *ngIf="selectedLocation" class="mapAlertcls">
+  <h3>
+    <img *ngIf="selectedLocation.image" [src]="selectedLocation.image" width="100" class="logocls" />
+    {{ selectedLocation.name }}
+  </h3>
+  <p>{{ selectedLocation.description }}</p>
+  <p>Rating: {{ selectedLocation.rating }}</p>
+  <button (click)="handleAction(selectedLocation)">Book</button>
+</div>
+</map-info-window>
+
+  </google-map>
+  
+
+  <!-- Show distance if two markers are selected -->
+<!-- Conditional Rendering Based on showDistance -->
+<div *ngIf="showDistance && distanceInKm" 
+   style="position: absolute; top: 60px; left: 10px; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.3);">
+<strong>Distance:</strong> {{ distanceInKm }} km
+</div>
 </ng-container>
+
+<!-- Show Distance Toggle Button -->
+<button *ngIf="selectedMarkers.length===2"
+(click)="toggleShowDistance()" 
+style="position: absolute; top: 10px; right: 10px; z-index: 999; background: #1976d2; color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">
+{{ showDistance ? 'Hide Distance' : 'Show Distance' }}
+</button>
